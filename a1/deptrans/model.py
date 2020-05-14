@@ -76,6 +76,10 @@ class ParserModel(nn.Module):
            (Don't use different variable names!)
         """
         # ****BEGIN YOUR CODE****
+        word_embeddings.requires_grad_(True)
+        self.word_embed = nn.Embedding.from_pretrained(word_embeddings, freeze=False)
+        self.tag_embed = nn.Embedding(self.config.n_tag_ids, self.config.embed_size, scale_grad_by_freq=True)
+        self.deprel_embed = nn.Embedding(self.config.n_deprel_ids, self.config.embed_size, scale_grad_by_freq=True)
         # ****END YOUR CODE****
 
     def create_net_layers(self) -> None:
@@ -108,6 +112,9 @@ class ParserModel(nn.Module):
         tensors automatically, so that's all that is to be done here.
         """
         # ****BEGIN YOUR CODE****
+        n = self.config.n_word_features + self.config.n_tag_features + self.config.n_deprel_features
+        self.hidden_layer = nn.Linear(self.config.embed_size * n, self.config.hidden_size)
+        self.output_layer = nn.Linear(self.config.hidden_size, self.config.n_classes)
         # ****END YOUR CODE****
 
     def reshape_embedded(self, embedded_batch: torch.Tensor) -> torch.Tensor:
@@ -136,6 +143,8 @@ class ParserModel(nn.Module):
            embedded_batch.reshape(...) methods if you prefer.
         """
         # ****BEGIN YOUR CODE****
+        e_size = list(embedded_batch.shape)
+        reshaped_batch = torch.reshape(embedded_batch, (e_size[0], -1))
         # ****END YOUR CODE****
         return reshaped_batch
 
@@ -172,6 +181,10 @@ class ParserModel(nn.Module):
            get the necessary shape specified above and return the result.
         """
         # ****BEGIN YOUR CODE****
+        lu_word_embeddings = self.reshape_embedded(self.word_embed(word_id_batch))
+        lu_tag_embeddings = self.reshape_embedded(self.tag_embed(tag_id_batch))
+        lu_deprel_embeddings = self.reshape_embedded(self.deprel_embed(deprel_id_batch))
+        x = torch.cat((lu_word_embeddings, lu_tag_embeddings, lu_deprel_embeddings), 1)
         # ****END YOUR CODE****
         return x
 
@@ -221,6 +234,9 @@ class ParserModel(nn.Module):
                                        torch.tensor(deprel_id_batch))
 
         # ****BEGIN YOUR CODE****
+        h = F.relu(self.hidden_layer(x))
+        h_drop = F.dropout(h, self.config.dropout, training=self.training)
+        pred = self.output_layer(h_drop)
         # ****END YOUR CODE****
         return pred
 
@@ -249,6 +265,7 @@ class ParserModel(nn.Module):
             loss: A 0d tensor (scalar) of dtype float
         """
         # ****BEGIN YOUR CODE****
+        loss = F.cross_entropy(prediction_batch, class_batch)
         # ****END YOUR CODE****
         return loss
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# Student name: NAME
-# Student number: NUMBER
-# teach.cs login username: USERNAME
+# Student name: Jiahao Cheng
+# Student number: 1003065737
+# teach.cs login username: chengj60
 """Functions and classes that handle parsing"""
 
 from itertools import chain
@@ -60,6 +60,7 @@ class PartialParse(object):
         Assume that the PartialParse is valid
         """
         # ****BEGIN YOUR CODE****
+        return self.next == len(self.sentence) and len(self.stack) == 1
         # ****END YOUR CODE****
 
     def parse_step(self, transition_id, deprel=None):
@@ -81,6 +82,23 @@ class PartialParse(object):
                 given the current state
         """
         # ****BEGIN YOUR CODE****
+        if transition_id == self.left_arc_id:
+            if len(self.stack) < 2:
+                raise ValueError("The stack contains less than 2 words. Cannot do left arc.")
+            self.arcs.append((self.stack[-1], self.stack[-2], deprel))
+            self.stack.pop(-2)
+        elif transition_id == self.right_arc_id:
+            if len(self.stack) < 2:
+                raise ValueError("The stack contains less than 2 words. Cannot do right arc.")
+            self.arcs.append((self.stack[-2], self.stack[-1], deprel))
+            self.stack.pop(-1)
+        elif transition_id == self.shift_id:
+            if self.next >= len(self.sentence):
+                raise ValueError("The buffer is empty. Cannot do shift.")
+            self.stack.append(self.next)
+            self.next += 1
+        else:
+            raise ValueError("Invalid transition_id.")
         # ****END YOUR CODE****
 
     def get_n_leftmost_deps(self, sentence_idx, n=None):
@@ -103,6 +121,13 @@ class PartialParse(object):
                 1, etc.
         """
         # ****BEGIN YOUR CODE****
+        deps = []
+        for dep in self.arcs:
+            if dep[0] == sentence_idx:
+                deps.append(dep[1])
+        deps.sort()
+        if n is not None and n < len(deps):
+            return deps[:n]
         # ****END YOUR CODE****
         return deps
 
@@ -126,6 +151,13 @@ class PartialParse(object):
                 1, etc.
         """
         # ****BEGIN YOUR CODE****
+        deps = []
+        for dep in self.arcs:
+            if dep[0] == sentence_idx:
+                deps.append(dep[1])
+        deps.sort(reverse=True)
+        if n is not None and n < len(deps):
+            return deps[:n]
         # ****END YOUR CODE****
         return deps
 
@@ -183,6 +215,29 @@ class PartialParse(object):
             raise ValueError('PartialParse already completed')
         transition, deprel_label = -1, None
         # ****BEGIN YOUR CODE****
+        # shift only
+        if len(self.stack) == 1:
+            transition = self.shift_id
+        else:
+            # left_arc
+            first, second = self.stack[-1], self.stack[-2]
+            if get_head(second, graph) == first:
+                transition = self.left_arc_id
+                deprel_label = get_deprel(second, graph)
+            # right_arc
+            else:
+                # check whether exist any right arc dependency after the last word
+                deps_after = list(filter(lambda x: x > first, get_deps(first, graph)))
+                curr_deps = []
+                for dep in self.arcs:
+                    if dep[1] > first and dep[0] == first:
+                        curr_deps.append(dep[1])
+                if deps_after == curr_deps and get_head(first, graph) == second:
+                    transition = self.right_arc_id
+                    deprel_label = get_deprel(first, graph)
+                # shift
+                else:
+                    transition = self.shift_id
         # ****END YOUR CODE****
         return transition, deprel_label
 
@@ -234,6 +289,40 @@ def minibatch_parse(sentences, model, batch_size):
             arcs[i] should contain the arcs for sentences[i]).
     """
     # ****BEGIN YOUR CODE****
+    # Initialize partial_parses
+    partial_parses = []
+    for sentence in sentences:
+        partial_parses.append(PartialParse(sentence))
+    # Initialize a shallow copy of partial_parses
+    unfinished_parses = partial_parses.copy()
+
+    while unfinished_parses:
+        # use the first batch_size parses in unfinished_parses as a minibatch
+        if batch_size > len(unfinished_parses):
+            minibatch = unfinished_parses[:]
+        else:
+            minibatch = unfinished_parses[:batch_size]
+        # use the model to predict the next transition for each partial parse in the minibatch
+        td_paris = model.predict(minibatch)
+        # perform a parse step on each partial parse in the minibatch with its predicted transition
+        removed = []
+        for i in range(len(td_paris)):
+            transition_id = td_paris[i][0]
+            deprel = td_paris[i][1]
+            try:
+                minibatch[i].parse_step(transition_id, deprel)
+            except ValueError:
+                removed.append(minibatch[i])
+            if minibatch[i].complete:
+                removed.append(minibatch[i])
+        # remove those parses that are completed from unfinished_parses
+        for parse in removed:
+            unfinished_parses.remove(parse)
+
+    # get arcs for each completed parse
+    arcs = []
+    for parse in partial_parses:
+        arcs.append(parse.arcs)
     # ****END YOUR CODE****
     return arcs
 
