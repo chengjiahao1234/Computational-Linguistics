@@ -218,9 +218,10 @@ class PartialParse(object):
         # shift only
         if len(self.stack) == 1:
             transition = self.shift_id
-        elif len(self.stack) == 2 and self.next == len(self.sentence) and get_head(self.stack[-1], graph) == self.stack[-2]:
-        	transition = self.right_arc_id
-        	deprel_label = get_deprel(self.stack[-1], graph)
+        elif len(self.stack) == 2 and self.next == len(self.sentence) \
+                and get_head(self.stack[-1], graph) == self.stack[-2]:
+            transition = self.right_arc_id
+            deprel_label = get_deprel(self.stack[-1], graph)
         else:
             # left_arc
             first, second = self.stack[-1], self.stack[-2]
@@ -293,9 +294,7 @@ def minibatch_parse(sentences, model, batch_size):
     """
     # ****BEGIN YOUR CODE****
     # Initialize partial_parses
-    partial_parses = []
-    for sentence in sentences:
-        partial_parses.append(PartialParse(sentence))
+    partial_parses = [PartialParse(sentence) for sentence in sentences]
     # Initialize a shallow copy of partial_parses
     unfinished_parses = partial_parses.copy()
 
@@ -323,9 +322,7 @@ def minibatch_parse(sentences, model, batch_size):
             unfinished_parses.remove(parse)
 
     # get arcs for each completed parse
-    arcs = []
-    for parse in partial_parses:
-        arcs.append(parse.arcs)
+    arcs = [parse.arcs for parse in partial_parses]
     # ****END YOUR CODE****
     return arcs
 
