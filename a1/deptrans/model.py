@@ -76,10 +76,9 @@ class ParserModel(nn.Module):
            (Don't use different variable names!)
         """
         # ****BEGIN YOUR CODE****
-        word_embeddings.requires_grad_(True)
         self.word_embed = nn.Embedding.from_pretrained(word_embeddings, freeze=False)
-        self.tag_embed = nn.Embedding(self.config.n_tag_ids, self.config.embed_size, scale_grad_by_freq=True)
-        self.deprel_embed = nn.Embedding(self.config.n_deprel_ids, self.config.embed_size, scale_grad_by_freq=True)
+        self.tag_embed = nn.Embedding(self.config.n_tag_ids, self.config.embed_size)
+        self.deprel_embed = nn.Embedding(self.config.n_deprel_ids, self.config.embed_size)
         # ****END YOUR CODE****
 
     def create_net_layers(self) -> None:
@@ -181,10 +180,10 @@ class ParserModel(nn.Module):
            get the necessary shape specified above and return the result.
         """
         # ****BEGIN YOUR CODE****
-        lu_word_embeddings = self.reshape_embedded(self.word_embed(word_id_batch))
-        lu_tag_embeddings = self.reshape_embedded(self.tag_embed(tag_id_batch))
-        lu_deprel_embeddings = self.reshape_embedded(self.deprel_embed(deprel_id_batch))
-        x = torch.cat((lu_word_embeddings, lu_tag_embeddings, lu_deprel_embeddings), 1)
+        word_embed = self.reshape_embedded(self.word_embed(word_id_batch))
+        tag_embed = self.reshape_embedded(self.tag_embed(tag_id_batch))
+        deprel_embed = self.reshape_embedded(self.deprel_embed(deprel_id_batch))
+        x = torch.cat((word_embed, tag_embed, deprel_embed), 1)
         # ****END YOUR CODE****
         return x
 

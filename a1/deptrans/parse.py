@@ -83,8 +83,8 @@ class PartialParse(object):
         """
         # ****BEGIN YOUR CODE****
         if transition_id == self.left_arc_id:
-            if len(self.stack) < 2:
-                raise ValueError("The stack contains less than 2 words. Cannot do left arc.")
+            if len(self.stack) < 3:
+                raise ValueError("The stack contains less than 3 words. Cannot do left arc.")
             self.arcs.append((self.stack[-1], self.stack[-2], deprel))
             self.stack.pop(-2)
         elif transition_id == self.right_arc_id:
@@ -218,6 +218,9 @@ class PartialParse(object):
         # shift only
         if len(self.stack) == 1:
             transition = self.shift_id
+        elif len(self.stack) == 2 and self.next == len(self.sentence) and get_head(self.stack[-1], graph) == self.stack[-2]:
+        	transition = self.right_arc_id
+        	deprel_label = get_deprel(self.stack[-1], graph)
         else:
             # left_arc
             first, second = self.stack[-1], self.stack[-2]
