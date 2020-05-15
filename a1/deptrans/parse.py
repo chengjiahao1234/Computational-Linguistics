@@ -83,8 +83,8 @@ class PartialParse(object):
         """
         # ****BEGIN YOUR CODE****
         if transition_id == self.left_arc_id:
-            if len(self.stack) < 3:
-                raise ValueError("The stack contains less than 3 words. Cannot do left arc.")
+            if len(self.stack) < 2:
+                raise ValueError("The stack contains less than 2 words. Cannot do left arc.")
             self.arcs.append((self.stack[-1], self.stack[-2], deprel))
             self.stack.pop(-2)
         elif transition_id == self.right_arc_id:
@@ -218,10 +218,6 @@ class PartialParse(object):
         # shift only
         if len(self.stack) == 1:
             transition = self.shift_id
-        elif len(self.stack) == 2 and self.next == len(self.sentence) \
-                and get_head(self.stack[-1], graph) == self.stack[-2]:
-            transition = self.right_arc_id
-            deprel_label = get_deprel(self.stack[-1], graph)
         else:
             # left_arc
             first, second = self.stack[-1], self.stack[-2]
@@ -234,9 +230,9 @@ class PartialParse(object):
                 deps_after = list(filter(lambda x: x > first, get_deps(first, graph)))
                 curr_deps = []
                 for dep in self.arcs:
-                    if dep[1] > first and dep[0] == first:
+                    if dep[0] == first and dep[1] > first:
                         curr_deps.append(dep[1])
-                if deps_after == curr_deps and get_head(first, graph) == second:
+                if sorted(curr_deps) == sorted(deps_after) and get_head(first, graph) == second:
                     transition = self.right_arc_id
                     deprel_label = get_deprel(first, graph)
                 # shift
@@ -301,7 +297,7 @@ def minibatch_parse(sentences, model, batch_size):
     while unfinished_parses:
         # use the first batch_size parses in unfinished_parses as a minibatch
         if batch_size > len(unfinished_parses):
-            minibatch = unfinished_parses[:]
+            minibatch = unfinished_parses
         else:
             minibatch = unfinished_parses[:batch_size]
         # use the model to predict the next transition for each partial parse in the minibatch
