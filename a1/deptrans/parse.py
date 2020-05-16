@@ -83,8 +83,8 @@ class PartialParse(object):
         """
         # ****BEGIN YOUR CODE****
         if transition_id == self.left_arc_id:
-            if len(self.stack) < 2:
-                raise ValueError("The stack contains less than 2 words. Cannot do left arc.")
+            if len(self.stack) < 3:
+                raise ValueError("The stack contains less than 3 words. Cannot do left arc.")
             self.arcs.append((self.stack[-1], self.stack[-2], deprel))
             self.stack.pop(-2)
         elif transition_id == self.right_arc_id:
@@ -121,10 +121,7 @@ class PartialParse(object):
                 1, etc.
         """
         # ****BEGIN YOUR CODE****
-        deps = []
-        for dep in self.arcs:
-            if dep[0] == sentence_idx:
-                deps.append(dep[1])
+        deps = [dep[1] for dep in self.arcs if dep[0] == sentence_idx]
         deps.sort()
         if n is not None and n < len(deps):
             return deps[:n]
@@ -151,10 +148,7 @@ class PartialParse(object):
                 1, etc.
         """
         # ****BEGIN YOUR CODE****
-        deps = []
-        for dep in self.arcs:
-            if dep[0] == sentence_idx:
-                deps.append(dep[1])
+        deps = [dep[1] for dep in self.arcs if dep[0] == sentence_idx]
         deps.sort(reverse=True)
         if n is not None and n < len(deps):
             return deps[:n]
@@ -228,10 +222,7 @@ class PartialParse(object):
             else:
                 # check whether exist any right arc dependency after the last word
                 deps_after = list(filter(lambda x: x > first, get_deps(first, graph)))
-                curr_deps = []
-                for dep in self.arcs:
-                    if dep[0] == first and dep[1] > first:
-                        curr_deps.append(dep[1])
+                curr_deps = [dep[1] for dep in self.arcs if dep[0] == first and dep[1] > first]
                 if sorted(curr_deps) == sorted(deps_after) and get_head(first, graph) == second:
                     transition = self.right_arc_id
                     deprel_label = get_deprel(first, graph)
@@ -296,10 +287,7 @@ def minibatch_parse(sentences, model, batch_size):
 
     while unfinished_parses:
         # use the first batch_size parses in unfinished_parses as a minibatch
-        if batch_size > len(unfinished_parses):
-            minibatch = unfinished_parses
-        else:
-            minibatch = unfinished_parses[:batch_size]
+        minibatch = unfinished_parses[: batch_size] if batch_size < len(unfinished_parses) else unfinished_parses
         # use the model to predict the next transition for each partial parse in the minibatch
         td_paris = model.predict(minibatch)
         # perform a parse step on each partial parse in the minibatch with its predicted transition

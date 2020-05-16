@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# Student name: NAME
-# Student number: NUMBER
-# teach.cs login username: USERNAME
+# Student name: Jiahao Cheng
+# Student number: 1003065737
+# teach.cs login username: chengj60
 """Statistical modelling/parsing classes"""
 
 from itertools import islice
@@ -142,8 +142,7 @@ class ParserModel(nn.Module):
            embedded_batch.reshape(...) methods if you prefer.
         """
         # ****BEGIN YOUR CODE****
-        e_size = list(embedded_batch.shape)
-        reshaped_batch = torch.reshape(embedded_batch, (e_size[0], -1))
+        reshaped_batch = torch.reshape(embedded_batch, (embedded_batch.shape[0], -1))
         # ****END YOUR CODE****
         return reshaped_batch
 
