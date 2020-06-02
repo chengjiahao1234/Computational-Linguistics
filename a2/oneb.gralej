@@ -1,0 +1,49 @@
+<'fred feeds the dog with biscuits'
+{ :'s:fred feeds the dog with biscuits'
+    s(
+        num: $0 = sg)
+    { :'lexicon:fred'
+        np(
+            is_pr: pr,
+            num: $0)
+    }
+    { :'vp_2:feeds the dog with biscuits'
+        vp(
+            num: $0)
+        { :'lexicon:feeds'
+            v(
+                num: $0)
+        }
+        { :'np_2:the dog'
+            np(
+                is_pr: $6 = npr,
+                num: $7 = sg)
+            { :'lexicon:the'
+                det
+            }
+            { :'lexicon:dog'
+                n(
+                    is_pr: $6,
+                    num: $7)
+            }
+        }
+        { :'pp:with biscuits'
+            pp
+            { :'lexicon:with'
+                p
+            }
+            { :'np_1:biscuits'
+                np(
+                    is_pr: $12 = npr,
+                    num: $13 = pl)
+                { :'lexicon:biscuits'
+                    n(
+                        is_pr: $12,
+                        num: $13)
+                }
+            }
+        }
+    }
+}
+>
+
