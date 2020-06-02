@@ -5,10 +5,10 @@ bot sub [cat, num, proper].
 	cat sub [has_feature, det, p, pp].
 		% all categories that could have features
 		has_feature sub [s, noun, verb] intro [num:num].
-			% all nouns
+			% nouns
 			noun sub [n, np] intro [is_pr:proper].
 
-			% all verbs
+			% verbs
 			verb sub [v, vp].
 
 	% The feature indicating whether the word is singular or plural.
