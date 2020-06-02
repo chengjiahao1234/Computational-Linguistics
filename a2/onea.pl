@@ -1,4 +1,4 @@
-% Name: Jiahao Cheng, login_id: chengj60 student_id: 1003065737
+% Name: Jiahao Cheng, login_id: chengj60, student_id: 1003065737
 
 bot sub [s, rule, lexicon].
 	% all rules
