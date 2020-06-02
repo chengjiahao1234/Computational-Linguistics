@@ -7,7 +7,7 @@ bot sub [cat, num, proper].
 		has_feature sub [s, noun, verb] intro [num:num].
 			% all nouns
 			noun sub [n, np] intro [is_pr:proper].
-				$ all nouns that is not np (not proper noun in this grammar)
+				% all nouns that is not np (not proper noun in this grammar)
 				n intro [is_pr:npr].
 
 			% all verbs
@@ -53,7 +53,7 @@ cat> (n, num:A, is_pr:P).
 % Lexicon
 fred ---> (np, num:sg, is_pr:pr).
 
-biscuits ---> (n, num:pl).
+biscuits ---> (n, num:pl, is_pr:npr).
 
 feed ---> (v, num:pl).
 
@@ -61,8 +61,8 @@ feeds ---> (v, num:sg).
 
 the ---> det.
 
-dog ---> (n, num:sg).
+dog ---> (n, num:sg, is_pr:npr).
 
-puppies ---> (n, num:pl).
+puppies ---> (n, num:pl, is_pr:npr).
 
 with ---> p.
