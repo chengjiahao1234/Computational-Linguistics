@@ -7,8 +7,6 @@ bot sub [cat, num, proper].
 		has_feature sub [s, noun, verb] intro [num:num].
 			% all nouns
 			noun sub [n, np] intro [is_pr:proper].
-				% all nouns that is not np (not proper noun in this grammar)
-				n intro [is_pr:npr].
 
 			% all verbs
 			verb sub [v, vp].
