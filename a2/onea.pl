@@ -22,7 +22,7 @@ cat> np.
 
 vppl_1 rule
 vppl ===>
-cat> cpl,
+cat> vpl,
 cat> np.
 
 vpsg_2 rule
@@ -69,7 +69,7 @@ np ===>
 cat> nppl.
 
 % Lexicon
-Fred ---> nprp.
+fred ---> nprp.
 biscuits ---> npl.
 feed ---> vpl.
 feeds ---> vsg.
