@@ -1,37 +1,40 @@
 % Name: Jiahao Cheng, login_id: chengj60 student_id: 1003065737
 
 bot sub [s, rule, lexicon].
+	% all rules
 	rule sub [vpsg, vppl, pp, npsg, nppl, np].
+
+	% all lexicons
 	lexicon sub [nprp, npl, vpl, vsg, det, nsg, p].
 	
 % Rules
-s_1 rule
+s_sg rule
 s ===>
 cat> npsg,
 cat> vpsg.
 
-s_2 rule
+s_pl rule
 s ===>
 cat> nppl,
 cat> vppl.
 
-vpsg_1 rule
+vpsg rule
 vpsg ===>
 cat> vsg,
 cat> np.
 
-vppl_1 rule
+vppl rule
 vppl ===>
 cat> vpl,
 cat> np.
 
-vpsg_2 rule
+vpsg_pp rule
 vpsg ===>
 cat> vsg,
 cat> np,
 cat> pp.
 
-vppl_2 rule
+vppl_pp rule
 vppl ===>
 cat> vpl,
 cat> np,
@@ -42,38 +45,45 @@ pp ===>
 cat> p,
 cat> np.
 
-npsg_1 rule
+npsg_pro rule
 npsg ===>
 cat> nprp.
 
-npsg_2 rule
+npsg_det rule
 npsg ===>
 cat> det,
 cat> nsg.
 
-nppl_1 rule
+nppl_det rule
 nppl ===>
 cat> det,
 cat> nsg.
 
-nppl_2 rule
+nppl rule
 nppl ===>
 cat> npl.
 
-np_1 rule
+np_sg rule
 np ===>
 cat> npsg.
 
-np_2 rule
+np_pl rule
 np ===>
 cat> nppl.
 
 % Lexicon
 fred ---> nprp.
+
 biscuits ---> npl.
+
 feed ---> vpl.
+
 feeds ---> vsg.
+
 the ---> det.
+
 dog ---> nsg.
+
 puppies ---> npl.
+
 with ---> p.

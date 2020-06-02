@@ -1,11 +1,22 @@
 % Name: Jiahao Cheng, login_id: chengj60 student_id: 1003065737
 
 bot sub [cat, num, proper].
+	% all categories
 	cat sub [has_feature, det, p, pp].
-		has_feature sub [s, noun, v, vp] intro [num:num].
-			noun sub [np, n] intro [is_pr:proper].
+		% all categories that could have features
+		has_feature sub [s, noun, verb] intro [num:num].
+			% all nouns
+			noun sub [n, np] intro [is_pr:proper].
+				$ all nouns that is not np (not proper noun in this grammar)
 				n intro [is_pr:npr].
+
+			% all verbs
+			verb sub [v, vp].
+
+	% The feature indicating whether the word is singular or plural.
 	num sub [sg, pl].
+
+	% The feature indicating whether it is the proper noun.
 	proper sub [pr, npr].
 	
 % Rules
@@ -14,12 +25,12 @@ s rule
 cat> (np, num:A),
 cat> (vp, num:A).
 
-vp_1 rule
+vp rule
 (vp, num:A) ===>
 cat> (v, num:A),
 cat> np.
 
-vp_2 rule
+vp_pp rule
 (vp, num:A) ===>
 cat> (v, num:A),
 cat> np,
@@ -30,22 +41,28 @@ pp ===>
 cat> p,
 cat> np.
 
-np_1 rule
+np rule
 (np, num:A, is_pr:P) ===>
 cat> (n, num:A, is_pr:P).
 
-np_2 rule
+np_det rule
 (np, num:A, is_pr:P) ===>
 cat> det,
 cat> (n, num:A, is_pr:P).
 
 % Lexicon
 fred ---> (np, num:sg, is_pr:pr).
-biscuits ---> (n, num:pl).
-feed ---> (v, num:pl).
-feeds ---> (v, num:sg).
-the ---> det.
-dog ---> (n, num:sg).
-puppies ---> (n, num:pl).
-with ---> p.
 
+biscuits ---> (n, num:pl).
+
+feed ---> (v, num:pl).
+
+feeds ---> (v, num:sg).
+
+the ---> det.
+
+dog ---> (n, num:sg).
+
+puppies ---> (n, num:pl).
+
+with ---> p.
