@@ -1,0 +1,17 @@
+% Name: Jiahao Cheng, login_id: chengj60 student_id: 1003065737
+
+ii. The student appeared to sleep.
+appear:	theme -- the student
+sleep:	exp -- the student
+
+iii. The student promised the teacher to sleep.
+promise:agent -- the student
+	theme -- to sleep
+	beneficiary -- the teacher
+sleep:	experiencer -- the student
+
+iv. The student requested the teacher to sleep.
+request:agent -- the student
+	theme -- to sleep
+	beneficiary -- the teacher
+sleep:	experiencer -- the teacher
