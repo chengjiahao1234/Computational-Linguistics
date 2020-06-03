@@ -1,20 +1,20 @@
 <'fred feeds the dog with biscuits'
-{ :'s_1:fred feeds the dog with biscuits'
+{ :'s_sg:fred feeds the dog with biscuits'
     s
-    { :'npsg_1:fred'
+    { :'npsg_pro:fred'
         npsg
         { :'lexicon:fred'
             nprp
         }
     }
-    { :'vpsg_2:feeds the dog with biscuits'
+    { :'vpsg_pp:feeds the dog with biscuits'
         vpsg
         { :'lexicon:feeds'
             vsg
         }
-        { :'np_1:the dog'
+        { :'np_sg:the dog'
             np
-            { :'npsg_2:the dog'
+            { :'npsg_det:the dog'
                 npsg
                 { :'lexicon:the'
                     det
@@ -29,9 +29,9 @@
             { :'lexicon:with'
                 p
             }
-            { :'np_2:biscuits'
+            { :'np_pl:biscuits'
                 np
-                { :'nppl_2:biscuits'
+                { :'nppl:biscuits'
                     nppl
                     { :'lexicon:biscuits'
                         npl
