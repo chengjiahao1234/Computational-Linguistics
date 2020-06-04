@@ -3,7 +3,7 @@
 :- ale_flag(subtypecover,_,off).
 :- discontiguous sub/2,intro/2.
 
-bot sub [mood, tense, sem, cat, pos, verbal, nominal].
+bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
     % parts of speech
         pos sub [n, p, v, det, toinf].
@@ -41,10 +41,62 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
         % semantics for verbs 
         v_sem sub [tend, appear, promise, request, sleep]
-              intro [].     % This should not be empty!  Fill in features for this and
-                            % the following subtypes:
-            tend sub [].
-            appear sub [].
-            promise sub [].
-            request sub [].
-            sleep sub [].
+              intro [tense:tense, subcat:list].
+                % This should not be empty!  Fill in features for this and
+                % the following subtypes:
+            tend sub [] intro [agent:np, theme:inf_clause].
+            appear sub [] intro [theme:inf_clause].
+            promise sub [] intro [agent:np, theme:inf_clause, beneficiary:np].
+            request sub [] intro [agent:np, theme:inf_clause, beneficiary:np].
+            sleep sub [] intro [experiencer:np].
+    
+    % list
+    list sub [e_list,ne_list].
+        ne_list intro [hd:bot,tl:list].
+
+% Rules
+s rule
+(s, tense:tense) ===>
+cat> (Agent, np),
+cat> (vp, v_sem:(tense:tense, subcat:[Agent])).
+
+np rule
+np ===>
+cat> det,
+cat> n.
+
+inf_clause rule
+inf_clause ===>
+cat> toinf,
+cat> (vp, v_sem:(tense:present, subcat:[Experiencer])).
+
+vp_inf rule
+(vp, tense:tense) ===>
+cat> (v, v_sem:(tense:tense, subcat:[Agent, Theme])),
+cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[Agent])).
+
+vpnp_inf rule
+(vp, v_sem:(tense:tense, subcat:[Agent])) ===>
+cat> (v, v_sem:(tense:tense, subcat:[Agent, Theme, Beneficiary])),
+cat> (Beneficiary, np),
+cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[AGENT])).
+
+% Lexicons
+tended ---> (v, v_sem:(tend, tense:past, subcat:[Agent, Theme])).
+
+appeared ---> (v, v_sem:(appear, tense:past, subcat:[Theme])).
+
+promised ---> (v, v_sem:(promise, tense:past, subcat:[Agent, Theme, Beneficiary])).
+
+requested ---> (v, v_sem:(request, tense:past, subcat:[Agent, Theme, Beneficiary])).
+
+sleep ---> (v, v_sem:(sleep, tense:present, subcat:[Experiencer])).
+
+the ---> det.
+
+to ---> toinf.
+
+student ---> (n, n_sem:student).
+
+teacher ---> (n, n_sem:teacher).
+
