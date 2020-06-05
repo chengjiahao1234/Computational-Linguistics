@@ -61,9 +61,9 @@ cat> (Agent, np),
 cat> (vp, vsem:(t:past, subcat:[Agent])).
 
 np rule
-(np, nsem:N) ===>
+np ===>
 cat> det,
-cat> (n, nsem:N).
+cat> n.
 
 inf_clause_v rule
 (inf_clause, vsem:(t:present, subcat:[Agent])) ===>
@@ -72,7 +72,7 @@ cat> (vp, vsem:(t:present, subcat:[Agent])).
 
 inf_clause_vp rule
 (inf_clause, vsem:(t:present)) ===>
-cat> (Experiencer, np, nsem:N),
+cat> (Experiencer, np),
 cat> toinf,
 cat> (vp, vsem:(t:present, subcat:[Experiencer])).
 
@@ -85,10 +85,15 @@ vp_inf rule
 cat> (v, vsem:(t:T, subcat:[Theme, Agent])),
 cat> (Theme, inf_clause, vsem:(t:present, subcat:[Agent])).
 
+vp_inf_apr rule
+(vp, vsem:(t:T, subcat:[Agent])) ===>
+cat> (v, vsem:(t:T, subcat:[Theme])),
+cat> (Theme, inf_clause, vsem:(t:present, subcat[Agent])).
+
 vpnp_inf rule
 (vp, vsem:(t:T, subcat:[Agent])) ===>
 cat> (v, vsem:(t:T, subcat:[Theme, Beneficiary, Agent])),
-cat> (Beneficiary, np, nsem:N),
+cat> (Beneficiary, np),
 cat> (Theme, inf_clause, vsem:(t:present, subcat:[Agent])).
 
 % Lexicons
