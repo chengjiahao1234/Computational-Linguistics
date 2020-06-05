@@ -52,7 +52,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
     
 % list
 list sub [e_list,ne_list].
-    ne_list intro [hd:bot,tl:list].
+    ne_list intro [hd:cat,tl:list].
 
 % Rules
 s rule
@@ -93,40 +93,40 @@ cat> (Theme, inf_clause, vsem:(tense:present, subcat:[Agent])).
 
 % Lexicons
 tend ---> (v, vsem:(tend, tense:present, 
-    subcat:[Theme, Agent], 
+    subcat:[(inf_clause, Theme), (np, Agent)], 
     agent:Agent, theme:Theme)).
 
 tended ---> (v, vsem:(tend, tense:past, 
-    subcat:[Theme, Agent],
+    subcat:[(inf_clause, Theme), (np, Agent)],
     agent:Agent, theme:Theme)).
 
 appear ---> (v, vsem:(appear, tense:present, 
-    subcat:[Theme], theme:Theme)).
+    subcat:[(inf_clause, Theme)], theme:Theme)).
 
 appeared ---> (v, vsem:(appear, tense:past, 
-    subcat:[Theme], theme:Theme)).
+    subcat:[(inf_clause, Theme)], theme:Theme)).
 
 promise ---> (v, vsem:(promise, tense:present, 
-    subcat:[Theme, Beneficiary, Agent],
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 promised ---> (v, vsem:(promise, tense:past, 
-    subcat:[Theme, Beneficiary, Agent],
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 request ---> (v, vsem:(request, tense:present, 
-    subcat:[Theme, Beneficiary, Agent],
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 requested ---> (v, vsem:(request, tense:past, 
-    subcat:[Theme, Beneficiary, Agent],
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 sleep ---> (v, vsem:(sleep, tense:present, 
-    subcat:[Experiencer], experiencer:Experiencer)).
+    subcat:[(np, Experiencer)], experiencer:Experiencer)).
 
 slept ---> (v, vsem:(sleep, tense:past, 
-    subcat:[Experiencer], experiencer:Experiencer)).
+    subcat:[(np, Experiencer)], experiencer:Experiencer)).
 
 the ---> det.
 
