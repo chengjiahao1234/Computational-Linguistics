@@ -60,15 +60,25 @@ s rule
 cat> (Agent, np),
 cat> (vp, v_sem:(tense:tense, subcat:[Agent])).
 
+s_sleep rule
+(s, tense:tense) ===>
+cat> (Agent, np),
+cat> (v, v_sem:(tense:))
+
 np rule
 np ===>
 cat> det,
 cat> n.
 
-inf_clause rule
+inf_clause_v rule
 inf_clause ===>
 cat> toinf,
-cat> (vp, v_sem:(tense:present, subcat:[Experiencer])).
+cat> (v, v_sem:(tense:present, subcat:[Experiencer])).
+
+inf_clause_vp rule
+inf_clause ===>
+cat> toinf,
+cat> (vp, v_sem:(tense:present, subcat:[_]))
 
 vp_inf rule
 (vp, tense:tense) ===>
@@ -82,15 +92,25 @@ cat> (Beneficiary, np),
 cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[AGENT])).
 
 % Lexicons
-tended ---> (v, v_sem:(tend, tense:past, subcat:[Agent, Theme])).
+tend ---> (v, v_sem:(tend, tense:present, subcat:[(inf_clause, Theme), (np, Agent)])).
 
-appeared ---> (v, v_sem:(appear, tense:past, subcat:[Theme])).
+tended ---> (v, v_sem:(tend, tense:past, subcat:[(inf_clause, Theme), (np, Agent)])).
 
-promised ---> (v, v_sem:(promise, tense:past, subcat:[Agent, Theme, Beneficiary])).
+appear ---> (v, v_sem:(appear, tense:present, subcat:[(inf_clause, Theme)])).
 
-requested ---> (v, v_sem:(request, tense:past, subcat:[Agent, Theme, Beneficiary])).
+appeared ---> (v, v_sem:(appear, tense:past, subcat:[(inf_clause, Theme)])).
 
-sleep ---> (v, v_sem:(sleep, tense:present, subcat:[Experiencer])).
+promise ---> (v, v_sem:(promise, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+
+promised ---> (v, v_sem:(promise, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+
+request ---> (v, v_sem:(request, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+
+requested ---> (v, v_sem:(request, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+
+sleep ---> (v, v_sem:(sleep, tense:present, subcat:[(np, Experiencer)])).
+
+slept ---> (v, v_sem:(sleep, tense:past, subcat:[(np, Experiencer)])).
 
 the ---> det.
 
