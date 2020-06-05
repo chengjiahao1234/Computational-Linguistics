@@ -91,25 +91,41 @@ cat> (Beneficiary, np),
 cat> (Theme, inf_clause, vsem:(tense:present, subcat:[AGENT])).
 
 % Lexicons
-tend ---> (v, vsem:(tend, tense:present, subcat:[(inf_clause, Theme), (np, Agent)])).
+tend ---> (v, vsem:(tend, tense:present, 
+    subcat:[(inf_clause, Theme), (np, Agent)], 
+    agent:Agent, theme:Theme)).
 
-tended ---> (v, vsem:(tend, tense:past, subcat:[(inf_clause, Theme), (np, Agent)])).
+tended ---> (v, vsem:(tend, tense:past, 
+    subcat:[(inf_clause, Theme), (np, Agent)],
+    agent:Agent, theme:Theme)).
 
-appear ---> (v, vsem:(appear, tense:present, subcat:[(inf_clause, Theme)])).
+appear ---> (v, vsem:(appear, tense:present, 
+    subcat:[(inf_clause, Theme)], theme:Theme)).
 
-appeared ---> (v, vsem:(appear, tense:past, subcat:[(inf_clause, Theme)])).
+appeared ---> (v, vsem:(appear, tense:past, 
+    subcat:[(inf_clause, Theme)], theme:Theme)).
 
-promise ---> (v, vsem:(promise, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+promise ---> (v, vsem:(promise, tense:present, 
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-promised ---> (v, vsem:(promise, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+promised ---> (v, vsem:(promise, tense:past, 
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-request ---> (v, vsem:(request, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+request ---> (v, vsem:(request, tense:present, 
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-requested ---> (v, vsem:(request, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+requested ---> (v, vsem:(request, tense:past, 
+    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-sleep ---> (v, vsem:(sleep, tense:present, subcat:[(np, Experiencer)])).
+sleep ---> (v, vsem:(sleep, tense:present, 
+    subcat:[(np, Experiencer)], experiencer:Experiencer)).
 
-slept ---> (v, vsem:(sleep, tense:past, subcat:[(np, Experiencer)])).
+slept ---> (v, vsem:(sleep, tense:past, 
+    subcat:[(np, Experiencer)], experiencer:Experiencer)).
 
 the ---> det.
 
