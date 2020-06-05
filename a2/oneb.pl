@@ -18,35 +18,35 @@ bot sub [cat, num, proper].
 	proper sub [pr, npr].
 	
 % Rules
-s rule
-(s, num:A) ===>
-cat> (np, num:A),
-cat> (vp, num:A).
+np_vp__s rule
+	(s, num:A) ===>
+	cat> (np, num:A),
+	cat> (vp, num:A).
 
-vp rule
-(vp, num:A) ===>
-cat> (v, num:A),
-cat> np.
+v_np__vp rule
+	(vp, num:A) ===>
+	cat> (v, num:A),
+	cat> np.
 
-vp_pp rule
-(vp, num:A) ===>
-cat> (v, num:A),
-cat> np,
-cat> pp.
+v_np_pp__vp rule
+	(vp, num:A) ===>
+	cat> (v, num:A),
+	cat> np,
+	cat> pp.
 
-pp rule
-pp ===>
-cat> p,
-cat> np.
+p_np__pp rule
+	pp ===>
+	cat> p,
+	cat> np.
 
-np rule
-(np, num:A, is_pr:P) ===>
-cat> (n, num:A, is_pr:P).
+n__np rule
+	(np, num:A, is_pr:P) ===>
+	cat> (n, num:A, is_pr:P).
 
-np_det rule
-(np, num:A, is_pr:P) ===>
-cat> det,
-cat> (n, num:A, is_pr:P).
+det_n__np rule
+	(np, num:A, is_pr:P) ===>
+	cat> det,
+	cat> (n, num:A, is_pr:P).
 
 % Lexicon
 fred ---> (np, num:sg, is_pr:pr).

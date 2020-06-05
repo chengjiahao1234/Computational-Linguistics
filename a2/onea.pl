@@ -1,89 +1,89 @@
 % Name: Jiahao Cheng, login_id: chengj60, student_id: 1003065737
 
-bot sub [s, rule, lexicon].
+bot sub [s, phrase, lexical].
 	% all rules
-	rule sub [vpsg, vppl, pp, npsg, nppl, np].
+	phrase sub [vp_sg, vp_pl, pp, np_sg, np_pl, np].
 
 	% all lexicons
-	lexicon sub [nprp, npl, vpl, vsg, det, nsg, p].
+	lexical sub [nprp, n_pl, v_pl, v_sg, det, n_sg, p].
 	
 % Rules
-s_sg rule
-s ===>
-cat> npsg,
-cat> vpsg.
+npsg_vpsg__s rule
+	s ===>
+	cat> np_sg,
+	cat> vp_sg.
 
-s_pl rule
-s ===>
-cat> nppl,
-cat> vppl.
+nppl_vppl__s rule
+	s ===>
+	cat> np_pl,
+	cat> vp_pl.
 
-vpsg rule
-vpsg ===>
-cat> vsg,
-cat> np.
+vsg_np__vpsg rule
+	vp_sg ===>
+	cat> v_sg,
+	cat> np.
 
-vppl rule
-vppl ===>
-cat> vpl,
-cat> np.
+vpl_np__vppl rule
+	vp_pl ===>
+	cat> v_pl,
+	cat> np.
 
-vpsg_pp rule
-vpsg ===>
-cat> vsg,
-cat> np,
-cat> pp.
+vsg_np_pp__vpsg rule
+	vp_sg ===>
+	cat> v_sg,
+	cat> np,
+	cat> pp.
 
-vppl_pp rule
-vppl ===>
-cat> vpl,
-cat> np,
-cat> pp.
+vpl_np_pp__vppl rule
+	vp_pl ===>
+	cat> v_pl,
+	cat> np,
+	cat> pp.
 
-pp rule
-pp ===>
-cat> p,
-cat> np.
+p_np__pp rule
+	pp ===>
+	cat> p,
+	cat> np.
 
-npsg_pro rule
-npsg ===>
-cat> nprp.
+nprp__npsg rule
+	np_sg ===>
+	cat> nprp.
 
-npsg_det rule
-npsg ===>
-cat> det,
-cat> nsg.
+det_nsg__npsg rule
+	np_sg ===>
+	cat> det,
+	cat> n_sg.
 
-nppl_det rule
-nppl ===>
-cat> det,
-cat> npl.
+det_npl__nppl rule
+	np_pl ===>
+	cat> det,
+	cat> n_pl.
 
-nppl rule
-nppl ===>
-cat> npl.
+npl__nppl rule
+	np_pl ===>
+	cat> n_pl.
 
-np_sg rule
-np ===>
-cat> npsg.
+npsg__np rule
+	np ===>
+	cat> np_sg.
 
-np_pl rule
-np ===>
-cat> nppl.
+nppl__np rule
+	np ===>
+	cat> np_pl.
 
 % Lexicon
 fred ---> nprp.
 
-biscuits ---> npl.
+biscuits ---> n_pl.
 
-feed ---> vpl.
+feed ---> v_pl.
 
-feeds ---> vsg.
+feeds ---> v_sg.
 
 the ---> det.
 
-dog ---> nsg.
+dog ---> n_sg.
 
-puppies ---> npl.
+puppies ---> n_pl.
 
 with ---> p.
