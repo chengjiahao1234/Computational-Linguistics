@@ -56,14 +56,9 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
 % Rules
 s rule
-(s, tense:tense) ===>
+(s, tense:T) ===>
 cat> (Agent, np),
-cat> (vp, v_sem:(tense:tense, subcat:[Agent])).
-
-s_sleep rule
-(s, tense:tense) ===>
-cat> (Agent, np),
-cat> (v, v_sem:(tense:tense)).
+cat> (vp, v_sem:(tense:T, subcat:[Agent])).
 
 np rule
 np ===>
@@ -71,23 +66,27 @@ cat> det,
 cat> n.
 
 inf_clause_v rule
-inf_clause ===>
+(inf_clause) ===>
 cat> toinf,
-cat> (v, v_sem:(tense:present, subcat:[Experiencer])).
+cat> (vp, v_sem:(tense:present, subcat:[Experiencer])).
 
 inf_clause_vp rule
-inf_clause ===>
+(inf_clause, v_sem:(tense:T, subcat:[Agent])) ===>
 cat> toinf,
-cat> (vp, v_sem:(tense:present, subcat:[_])).
+cat> (vp, v_sem:(tense:present, subcat:[Agent])).
+
+vp_v rule
+(vp, v_sem:(tense:T, subcat:[Agent])) ===>
+cat> (v, v_sem:(tense:T, subcat:[Agent])).
 
 vp_inf rule
-(vp, tense:tense) ===>
-cat> (v, v_sem:(tense:tense, subcat:[Agent, Theme])),
+(vp, v_sem:(tense:T, subcat:[Agent])) ===>
+cat> (v, v_sem:(tense:T, subcat:[Theme, Agent])),
 cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[Agent])).
 
 vpnp_inf rule
-(vp, v_sem:(tense:tense, subcat:[Agent])) ===>
-cat> (v, v_sem:(tense:tense, subcat:[Agent, Theme, Beneficiary])),
+(vp, v_sem:(tense:T, subcat:[Agent])) ===>
+cat> (v, v_sem:(tense:T, subcat:[Theme, Beneficiary, Agent])),
 cat> (Beneficiary, np),
 cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[AGENT])).
 
