@@ -41,7 +41,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
         % semantics for verbs 
         v_sem sub [tend, appear, promise, request, sleep]
-              intro [tense:tense, subcat:list].
+              intro [t:tense, subcat:list].
                 % This should not be empty!  Fill in features for this and
                 % the following subtypes:
             tend sub [] intro [agent:np, theme:inf_clause].
@@ -58,7 +58,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 s rule
 s ===>
 cat> (Agent, np),
-cat> (vp, vsem:(tense:past, subcat:[Agent])).
+cat> (vp, vsem:(t:past, subcat:[Agent])).
 
 np rule
 (np, nsem:N) ===>
@@ -66,66 +66,66 @@ cat> det,
 cat> (n, nsem:N).
 
 inf_clause_v rule
-(inf_clause, vsem:(tense:present, subcat:[Agent])) ===>
+(inf_clause, vsem:(t:present, subcat:[Agent])) ===>
 cat> toinf,
-cat> (vp, vsem:(tense:present, subcat:[Agent])).
+cat> (vp, vsem:(t:present, subcat:[Agent])).
 
 inf_clause_vp rule
-(inf_clause, vsem:(tense:present)) ===>
+(inf_clause, vsem:(t:present)) ===>
 cat> (Experiencer, np, nsem:N),
 cat> toinf,
-cat> (vp, vsem:(tense:present, subcat:[Experiencer])).
+cat> (vp, vsem:(t:present, subcat:[Experiencer])).
 
 vp_v rule
-(vp, vsem:(tense:T, subcat:[Agent])) ===>
-cat> (v, vsem:(tense:T, subcat:[Agent])).
+(vp, vsem:(t:T, subcat:[Agent])) ===>
+cat> (v, vsem:(t:T, subcat:[Agent])).
 
 vp_inf rule
-(vp, vsem:(tense:T, subcat:[Agent])) ===>
-cat> (v, vsem:(tense:T, subcat:[Theme, Agent])),
-cat> (Theme, inf_clause, vsem:(tense:present, subcat:[Agent])).
+(vp, vsem:(t:T, subcat:[Agent])) ===>
+cat> (v, vsem:(t:T, subcat:[Theme, Agent])),
+cat> (Theme, inf_clause, vsem:(t:present, subcat:[Agent])).
 
 vpnp_inf rule
-(vp, vsem:(tense:T, subcat:[Agent])) ===>
-cat> (v, vsem:(tense:T, subcat:[Theme, Beneficiary, Agent])),
+(vp, vsem:(t:T, subcat:[Agent])) ===>
+cat> (v, vsem:(t:T, subcat:[Theme, Beneficiary, Agent])),
 cat> (Beneficiary, np, nsem:N),
-cat> (Theme, inf_clause, vsem:(tense:present, subcat:[Agent])).
+cat> (Theme, inf_clause, vsem:(t:present, subcat:[Agent])).
 
 % Lexicons
-tend ---> (v, vsem:(tend, tense:present, 
+tend ---> (v, vsem:(tend, t:present, 
     subcat:[(inf_clause, Theme), (np, Agent)], 
     agent:Agent, theme:Theme)).
 
-tended ---> (v, vsem:(tend, tense:past, 
+tended ---> (v, vsem:(tend, t:past, 
     subcat:[(inf_clause, Theme), (np, Agent)],
     agent:Agent, theme:Theme)).
 
-appear ---> (v, vsem:(appear, tense:present, 
+appear ---> (v, vsem:(appear, t:present, 
     subcat:[(inf_clause, Theme)], theme:Theme)).
 
-appeared ---> (v, vsem:(appear, tense:past, 
+appeared ---> (v, vsem:(appear, t:past, 
     subcat:[(inf_clause, Theme)], theme:Theme)).
 
-promise ---> (v, vsem:(promise, tense:present, 
+promise ---> (v, vsem:(promise, t:present, 
     subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-promised ---> (v, vsem:(promise, tense:past, 
+promised ---> (v, vsem:(promise, t:past, 
     subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-request ---> (v, vsem:(request, tense:present, 
+request ---> (v, vsem:(request, t:present, 
     subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-requested ---> (v, vsem:(request, tense:past, 
+requested ---> (v, vsem:(request, t:past, 
     subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
-sleep ---> (v, vsem:(sleep, tense:present, 
+sleep ---> (v, vsem:(sleep, t:present, 
     subcat:[(np, Experiencer)], experiencer:Experiencer)).
 
-slept ---> (v, vsem:(sleep, tense:past, 
+slept ---> (v, vsem:(sleep, t:past, 
     subcat:[(np, Experiencer)], experiencer:Experiencer)).
 
 the ---> det.
