@@ -66,14 +66,15 @@ cat> det,
 cat> n.
 
 inf_clause_v rule
-(inf_clause) ===>
-cat> toinf,
-cat> (vp, vsem:(tense:present, subcat:[Experiencer])).
-
-inf_clause_vp rule
-(inf_clause, vsem:(tense:T, subcat:[Agent])) ===>
+(inf_clause, vsem:(tense:present, subcat:[Agent])) ===>
 cat> toinf,
 cat> (vp, vsem:(tense:present, subcat:[Agent])).
+
+inf_clause_vp rule
+(inf_clause, vsem:(tense:present)) ===>
+cat> (Experiencer, np),
+cat> toinf,
+cat> (vp, vsem:(tense:present, subcat:[Experiencer])).
 
 vp_v rule
 (vp, vsem:(tense:T, subcat:[Agent])) ===>
@@ -88,7 +89,7 @@ vpnp_inf rule
 (vp, vsem:(tense:T, subcat:[Agent])) ===>
 cat> (v, vsem:(tense:T, subcat:[Theme, Beneficiary, Agent])),
 cat> (Beneficiary, np),
-cat> (Theme, inf_clause, vsem:(tense:present, subcat:[AGENT])).
+cat> (Theme, inf_clause, vsem:(tense:present, subcat:[Agent])).
 
 % Lexicons
 tend ---> (v, vsem:(tend, tense:present, 
