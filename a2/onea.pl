@@ -57,7 +57,7 @@ cat> nsg.
 nppl_det rule
 nppl ===>
 cat> det,
-cat> nsg.
+cat> npl.
 
 nppl rule
 nppl ===>

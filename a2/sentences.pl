@@ -17,6 +17,6 @@ test_sent([fred, feeds, the, dog, with, feed], fails).
 % np
 test_sent([fred, feeds, the, dog, with, the, biscuits]).
 test_sent([the, dog, feeds, the, fred, with, the, puppies], fails).
-test_sent([the, dog, with, biscuits, feeds, the, dog], fails)
+test_sent([the, dog, with, biscuits, feeds, the, dog], fails).
 
 % Part 2
