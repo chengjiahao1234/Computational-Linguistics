@@ -41,9 +41,41 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
         % semantics for verbs 
         v_sem sub [tend, appear, promise, request, sleep]
-              intro [].
+              intro [tense2:tense].
             tend sub [].
             appear sub [].
             promise sub [].
             request sub [].
             sleep sub [].
+
+% Rules
+
+
+% Lexicons
+tend ---> (v, vsem:(tend, tense2:present)).
+
+tended ---> (v, vsem:(tend, tense2:past)).
+
+appear ---> (v, vsem:(appear, tense2:present)).
+
+appeared ---> (v, vsem:(appear, tense2:past)).
+
+promise ---> (v, vsem:(promise, tense2:present)).
+
+promised ---> (v, vsem:(promise, tense2:past)).
+
+request ---> (v, vsem:(request, tense2:present)).
+
+requested ---> (v, vsem:(request, tense2:past)).
+
+sleep ---> (v, vsem:(sleep, tense2:present)).
+
+slept ---> (v, vsem:(sleep, tense2:past)).
+
+the ---> det.
+
+to ---> toinf.
+
+student ---> (n, nsem:student).
+
+teacher ---> (n, nsem:teacher).
