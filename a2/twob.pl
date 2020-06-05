@@ -56,9 +56,9 @@ list sub [e_list,ne_list].
 
 % Rules
 s rule
-(s, tense:T) ===>
+s ===>
 cat> (Agent, np),
-cat> (vp, vsem:(tense:T, subcat:[Agent])).
+cat> (vp, vsem:(tense:past, subcat:[Agent])).
 
 np rule
 (np, nsem:N) ===>
