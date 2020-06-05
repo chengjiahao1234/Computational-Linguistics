@@ -39,11 +39,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
         % semantics for verbs
         % vtense sub [present,past].
-        v_sem sub [tend, appear, promise, expect, sleep]
+        v_sem sub [tend, appear, promise, expect, request, sleep]
               intro [vtense:tense, subcat:list].     % This should not be empty!  Fill in features for this and
                             % the following subtypes:
             tend sub [] intro [agent_try:np, theme_try:inf_clause].
             promise sub [] intro [agent_pro:np, theme_pro:inf_clause, beneficiary_pro:np].
+            request sub [] intro [agent_req:np, theme_req:inf_clause, beneficiary_req:np].
             appear sub [] intro [theme_apr:inf_clause].
             expect sub [] intro [agent_exp:np, theme_exp:inf_clause].
             sleep sub [] intro [experiencer:np].
@@ -110,6 +111,10 @@ expected ---> (v,vsem:(vtense:past,subcat:[A, B],agent_exp:A,theme_exp:B)).
 promise ---> (v,vsem:(vtense:present,subcat:[A, B, C],agent_pro:A,theme_pro:B,beneficiary_pro:C)).
 
 promised ---> (v,vsem:(vtense:past,subcat:[A, B, C],agent_pro:A,theme_pro:B,beneficiary_pro:C)).
+
+request ---> (v,vsem:(vtense:present,subcat:[A, B, C],agent_req:A,theme_req:B,beneficiary_req:C)).
+
+requested ---> (v,vsem:(vtense:past,subcat:[A, B, C],agent_req:A,theme_req:B,beneficiary_req:C)).
 
 sleep ---> (v,vsem:(vtense:present, subcat:[A],experiencer:A)).
 
