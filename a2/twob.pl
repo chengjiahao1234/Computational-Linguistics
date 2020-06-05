@@ -93,40 +93,40 @@ cat> (Theme, inf_clause, vsem:(tense:present, subcat:[Agent])).
 
 % Lexicons
 tend ---> (v, vsem:(tend, tense:present, 
-    subcat:[(inf_clause, Theme), (np, Agent)], 
+    subcat:[Theme, Agent], 
     agent:Agent, theme:Theme)).
 
 tended ---> (v, vsem:(tend, tense:past, 
-    subcat:[(inf_clause, Theme), (np, Agent)],
+    subcat:[Theme, Agent],
     agent:Agent, theme:Theme)).
 
 appear ---> (v, vsem:(appear, tense:present, 
-    subcat:[(inf_clause, Theme)], theme:Theme)).
+    subcat:[Theme], theme:Theme)).
 
 appeared ---> (v, vsem:(appear, tense:past, 
-    subcat:[(inf_clause, Theme)], theme:Theme)).
+    subcat:[Theme], theme:Theme)).
 
 promise ---> (v, vsem:(promise, tense:present, 
-    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    subcat:[Theme, Beneficiary, Agent],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 promised ---> (v, vsem:(promise, tense:past, 
-    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    subcat:[Theme, Beneficiary, Agent],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 request ---> (v, vsem:(request, tense:present, 
-    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    subcat:[Theme, Beneficiary, Agent],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 requested ---> (v, vsem:(request, tense:past, 
-    subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)],
+    subcat:[Theme, Beneficiary, Agent],
     theme:Theme, beneficiary:Beneficiary, agent:Agent)).
 
 sleep ---> (v, vsem:(sleep, tense:present, 
-    subcat:[(np, Experiencer)], experiencer:Experiencer)).
+    subcat:[Experiencer], experiencer:Experiencer)).
 
 slept ---> (v, vsem:(sleep, tense:past, 
-    subcat:[(np, Experiencer)], experiencer:Experiencer)).
+    subcat:[Experiencer], experiencer:Experiencer)).
 
 the ---> det.
 
