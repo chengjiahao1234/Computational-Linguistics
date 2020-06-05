@@ -1,42 +1,42 @@
 % Name: Jiahao Cheng, login_id: chengj60, student_id: 1003065737
 
 <'fred feeds the dog with biscuits'
-{ :'s_sg:fred feeds the dog with biscuits'
+{ :'npsg_vpsg__s:fred feeds the dog with biscuits'
     s
-    { :'npsg_pro:fred'
-        npsg
+    { :'nprp__npsg:fred'
+        np_sg
         { :'lexicon:fred'
             nprp
         }
     }
-    { :'vpsg_pp:feeds the dog with biscuits'
-        vpsg
+    { :'vsg_np_pp__vpsg:feeds the dog with biscuits'
+        vp_sg
         { :'lexicon:feeds'
-            vsg
+            v_sg
         }
-        { :'np_sg:the dog'
+        { :'npsg__np:the dog'
             np
-            { :'npsg_det:the dog'
-                npsg
+            { :'det_nsg__npsg:the dog'
+                np_sg
                 { :'lexicon:the'
                     det
                 }
                 { :'lexicon:dog'
-                    nsg
+                    n_sg
                 }
             }
         }
-        { :'pp:with biscuits'
+        { :'p_np__pp:with biscuits'
             pp
             { :'lexicon:with'
                 p
             }
-            { :'np_pl:biscuits'
+            { :'nppl__np:biscuits'
                 np
-                { :'nppl:biscuits'
-                    nppl
+                { :'npl__nppl:biscuits'
+                    np_pl
                     { :'lexicon:biscuits'
-                        npl
+                        n_pl
                     }
                 }
             }

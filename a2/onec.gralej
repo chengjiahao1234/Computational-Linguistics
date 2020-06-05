@@ -1,7 +1,7 @@
 % Name: Jiahao Cheng, login_id: chengj60, student_id: 1003065737
 
 <'fred feeds the dog with biscuits'
-{ :'s:fred feeds the dog with biscuits'
+{ :'np_vp__s:fred feeds the dog with biscuits'
     s(
         num: $0 = sg)
     { :'lexicon:fred'
@@ -9,14 +9,14 @@
             is_pr: pr,
             num: $0)
     }
-    { :'vp_pp:feeds the dog with biscuits'
+    { :'v_np_pp__vp:feeds the dog with biscuits'
         vp(
             num: $0)
         { :'lexicon:feeds'
             v(
                 num: $0)
         }
-        { :'np_det:the dog'
+        { :'det_n__np:the dog'
             np(
                 is_pr: $6 = npr,
                 num: $7 = sg)
@@ -29,12 +29,12 @@
                     num: $7)
             }
         }
-        { :'pp:with biscuits'
+        { :'p_np__pp:with biscuits'
             pp
             { :'lexicon:with'
                 p
             }
-            { :'np:biscuits'
+            { :'n__np:biscuits'
                 np(
                     is_pr: $12 = npr,
                     num: $13 = pl)
