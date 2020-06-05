@@ -58,7 +58,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 s rule
 (s, tense:T) ===>
 cat> (Agent, np),
-cat> (vp, v_sem:(tense:T, subcat:[Agent])).
+cat> (vp, vsem:(tense:T, subcat:[Agent])).
 
 np rule
 np ===>
@@ -68,54 +68,54 @@ cat> n.
 inf_clause_v rule
 (inf_clause) ===>
 cat> toinf,
-cat> (vp, v_sem:(tense:present, subcat:[Experiencer])).
+cat> (vp, vsem:(tense:present, subcat:[Experiencer])).
 
 inf_clause_vp rule
-(inf_clause, v_sem:(tense:T, subcat:[Agent])) ===>
+(inf_clause, vsem:(tense:T, subcat:[Agent])) ===>
 cat> toinf,
-cat> (vp, v_sem:(tense:present, subcat:[Agent])).
+cat> (vp, vsem:(tense:present, subcat:[Agent])).
 
 vp_v rule
-(vp, v_sem:(tense:T, subcat:[Agent])) ===>
-cat> (v, v_sem:(tense:T, subcat:[Agent])).
+(vp, vsem:(tense:T, subcat:[Agent])) ===>
+cat> (v, vsem:(tense:T, subcat:[Agent])).
 
 vp_inf rule
-(vp, v_sem:(tense:T, subcat:[Agent])) ===>
-cat> (v, v_sem:(tense:T, subcat:[Theme, Agent])),
-cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[Agent])).
+(vp, vsem:(tense:T, subcat:[Agent])) ===>
+cat> (v, vsem:(tense:T, subcat:[Theme, Agent])),
+cat> (Theme, inf_clause, vsem:(tense:present, subcat:[Agent])).
 
 vpnp_inf rule
-(vp, v_sem:(tense:T, subcat:[Agent])) ===>
-cat> (v, v_sem:(tense:T, subcat:[Theme, Beneficiary, Agent])),
+(vp, vsem:(tense:T, subcat:[Agent])) ===>
+cat> (v, vsem:(tense:T, subcat:[Theme, Beneficiary, Agent])),
 cat> (Beneficiary, np),
-cat> (Theme, inf_clause, v_sem:(tense:present, subcat:[AGENT])).
+cat> (Theme, inf_clause, vsem:(tense:present, subcat:[AGENT])).
 
 % Lexicons
-tend ---> (v, v_sem:(tend, tense:present, subcat:[(inf_clause, Theme), (np, Agent)])).
+tend ---> (v, vsem:(tend, tense:present, subcat:[(inf_clause, Theme), (np, Agent)])).
 
-tended ---> (v, v_sem:(tend, tense:past, subcat:[(inf_clause, Theme), (np, Agent)])).
+tended ---> (v, vsem:(tend, tense:past, subcat:[(inf_clause, Theme), (np, Agent)])).
 
-appear ---> (v, v_sem:(appear, tense:present, subcat:[(inf_clause, Theme)])).
+appear ---> (v, vsem:(appear, tense:present, subcat:[(inf_clause, Theme)])).
 
-appeared ---> (v, v_sem:(appear, tense:past, subcat:[(inf_clause, Theme)])).
+appeared ---> (v, vsem:(appear, tense:past, subcat:[(inf_clause, Theme)])).
 
-promise ---> (v, v_sem:(promise, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+promise ---> (v, vsem:(promise, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
 
-promised ---> (v, v_sem:(promise, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+promised ---> (v, vsem:(promise, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
 
-request ---> (v, v_sem:(request, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+request ---> (v, vsem:(request, tense:present, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
 
-requested ---> (v, v_sem:(request, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
+requested ---> (v, vsem:(request, tense:past, subcat:[(inf_clause, Theme), (np, Beneficiary), (np, Agent)])).
 
-sleep ---> (v, v_sem:(sleep, tense:present, subcat:[(np, Experiencer)])).
+sleep ---> (v, vsem:(sleep, tense:present, subcat:[(np, Experiencer)])).
 
-slept ---> (v, v_sem:(sleep, tense:past, subcat:[(np, Experiencer)])).
+slept ---> (v, vsem:(sleep, tense:past, subcat:[(np, Experiencer)])).
 
 the ---> det.
 
 to ---> toinf.
 
-student ---> (n, n_sem:student).
+student ---> (n, nsem:student).
 
-teacher ---> (n, n_sem:teacher).
+teacher ---> (n, nsem:teacher).
 
