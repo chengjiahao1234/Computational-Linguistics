@@ -63,7 +63,7 @@ cat> (vp, v_sem:(tense:tense, subcat:[Agent])).
 s_sleep rule
 (s, tense:tense) ===>
 cat> (Agent, np),
-cat> (v, v_sem:(tense:))
+cat> (v, v_sem:(tense:tense)).
 
 np rule
 np ===>
@@ -78,7 +78,7 @@ cat> (v, v_sem:(tense:present, subcat:[Experiencer])).
 inf_clause_vp rule
 inf_clause ===>
 cat> toinf,
-cat> (vp, v_sem:(tense:present, subcat:[_]))
+cat> (vp, v_sem:(tense:present, subcat:[_])).
 
 vp_inf rule
 (vp, tense:tense) ===>
