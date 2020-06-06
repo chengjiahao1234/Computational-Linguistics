@@ -3,7 +3,7 @@
 :- ale_flag(subtypecover,_,off).
 :- discontiguous sub/2,intro/2.
 
-bot sub [mood, tense, sem, cat, pos, verbal, nominal].
+bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
     % parts of speech
         pos sub [n, p, v, det, toinf].
@@ -41,36 +41,71 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
         % semantics for verbs 
         v_sem sub [tend, appear, promise, request, sleep]
-              intro [tense2:tense].
-            tend sub [].
-            appear sub [].
-            promise sub [].
-            request sub [].
-            sleep sub [].
+              intro [tense2:tense, subcat:list].
+            tend sub [] intro [agent:np, theme:xx].
+            appear sub [] intro [theme:xx].
+            promise sub [] intro [agent:np, theme:xx, beneficiary:np].
+            request sub [] intro [agent:np, theme:xx, beneficiary:np].
+            sleep sub [] intro [experiencer:np].
+    
+    % list
+    list sub [e_list,ne_list].
+        ne_list intro [hd:bot,tl:list].
 
 % Rules
+np_vp__s rule
+    (s, tense:T) ===>
+    cat> (np, nsem:N, A),
+    cat> (vp, vsem:(tense2:T, subcat:[A])).
 
+det_n__np rule
+    (np, nsem:N) ==>
+    cat> det,
+    cat> (n, nsem:N).
+
+to_v__inf rule
+    ()
 
 % Lexicons
-tend ---> (v, vsem:(tend, tense2:present)).
+tend ---> (v, vsem:(tend, tense2:present,
+    subcat:[(np, Agent), (xx, Theme)],
+    agent:Agent, theme:Theme)).
 
-tended ---> (v, vsem:(tend, tense2:past)).
+tended ---> (v, vsem:(tend, tense2:past,
+    subcat:[(np, Agent), (xx, Theme)],
+    agent:Agent, theme:Theme)).
 
-appear ---> (v, vsem:(appear, tense2:present)).
+appear ---> (v, vsem:(appear, tense2:present,
+    subcat:[(xx, Theme)],
+    theme:Theme)).
 
-appeared ---> (v, vsem:(appear, tense2:past)).
+appeared ---> (v, vsem:(appear, tense2:past,
+    subcat:[(xx, Theme)],
+    theme:Theme)).
 
-promise ---> (v, vsem:(promise, tense2:present)).
+promise ---> (v, vsem:(promise, tense2:present,
+    subcat:[(np, Agent), (xx, Theme), (np, Beneficiary)],
+    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
 
-promised ---> (v, vsem:(promise, tense2:past)).
+promised ---> (v, vsem:(promise, tense2:past,
+    subcat:[(np, Agent), (xx, Theme), (np, Beneficiary)],
+    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
 
-request ---> (v, vsem:(request, tense2:present)).
+request ---> (v, vsem:(request, tense2:present,
+    subcat:[(np, Agent), (xx, Theme), (np, Beneficiary)],
+    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
 
-requested ---> (v, vsem:(request, tense2:past)).
+requested ---> (v, vsem:(request, tense2:past,
+    subcat:[(np, Agent), (xx, Theme), (np, Beneficiary)],
+    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
 
-sleep ---> (v, vsem:(sleep, tense2:present)).
+sleep ---> (v, vsem:(sleep, tense2:present,
+    subcat:[(np, Experiencer)],
+    experiencer:Experiencer)).
 
-slept ---> (v, vsem:(sleep, tense2:past)).
+slept ---> (v, vsem:(sleep, tense2:past,
+    subcat:[(np, Experiencer)],
+    experiencer:Experiencer)).
 
 the ---> det.
 
