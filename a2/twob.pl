@@ -74,8 +74,8 @@ to_vp__inf rule
     cat> (vp, vsem:(tense2:present, subcat:Rest)).
 
 v_inf__vp_tend rule
-    (vp, vsem:(tense2:T, subcat:Rest)) ===>
-    cat> (v, vsem:(tend, tense2:T, subcat:[Theme|Rest])),
+    (vp, vsem:(tense2:T, subcat:[Agent])) ===>
+    cat> (v, vsem:(tend, tense2:T, subcat:[Theme|Agent])),
     cat> (inf_clause, vsem:(tense2:present, subcat:[Experiencer]), Theme).
 
 v_inf__vp_appear rule
@@ -90,8 +90,8 @@ v_inf__vp_promise rule
     cat> (inf_clause, vsem:(tense2:present, subcat:[Experiencer]), Theme).
 
 v_inf__vp_request rule
-    (vp, vsem:(tense2:T, subcat:Rest)) ===>
-    cat> (v, vsem:(request, tense2:T, subcat:[Theme|[Beneficiary|Rest]])),
+    (vp, vsem:(tense2:T, subcat:[Agent])) ===>
+    cat> (v, vsem:(request, tense2:T, subcat:[Theme|[Beneficiary|Agent]])),
     cat> (np, nsem:N, Beneficiary, Experiencer),
     cat> (inf_clause, vsem:(tense2:present, subcat:[Experiencer]), Theme).
 
