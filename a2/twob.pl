@@ -63,10 +63,10 @@ det_n__np rule
     cat> det,
     cat> (n, nsem:N).
 
-to_v__inf rule
+to_v__inf_sleep rule
     (inf_clause, vsem:(tense2:present, subcat:[Experiencer])) ===>
     cat> toinf,
-    cat> (v, vsem:(tense2:present, subcat:[Experiencer])).
+    cat> (v, vsem:(sleep, tense2:present, subcat:[Experiencer])).
 
 to_vp__inf rule
     (inf_clause, vsem:(tense2:present, subcat:Rest)) ===>
