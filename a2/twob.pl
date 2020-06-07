@@ -55,7 +55,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 % Rules
 % A: Agent and/or Experiencer
 np_vp__s rule
-    (s, tense:T) ===>
+    s ===>
     cat> (np, nsem:N, A),
     cat> (vp, vsem:(tense2:T, subcat:[A])).
 
