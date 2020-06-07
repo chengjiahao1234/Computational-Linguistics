@@ -86,13 +86,13 @@ v_inf__vp_appear rule
 v_inf__vp_promise rule
     (vp, vsem:(tense2:T, subcat:[Experiencer|Rest])) ===>
     cat> (v, vsem:(promise, tense2:T, subcat:[Theme|[Beneficiary|Rest]])),
-    cat> (np, Beneficiary),
+    cat> (np, nsem:N, Beneficiary),
     cat> (inf_clause, vsem:(tense2:present, subcat:[Experiencer]), Theme).
 
 v_inf__vp_request rule
     (vp, vsem:(tense2:T, subcat:Rest)) ===>
     cat> (v, vsem:(request, tense2:T, subcat:[Theme|[Beneficiary|Rest]])),
-    cat> (np, Beneficiary, Experiencer),
+    cat> (np, nsem:N, Beneficiary, Experiencer),
     cat> (inf_clause, vsem:(tense2:present, subcat:[Experiencer]), Theme).
 
 % Lexicons
