@@ -57,7 +57,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 np_vp__s rule
     (s, tense:T) ===>
     cat> (np, nsem:N, A),
-    cat> (vp, vsem:(tense2:T, subcat:[A|_])).
+    cat> (vp, vsem:(tense2:T, subcat:[A])).
 
 det_n__np rule
     (np, nsem:N) ===>
