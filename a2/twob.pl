@@ -69,13 +69,13 @@ to_v__inf_sleep rule
     cat> (v, vsem:(sleep, tense2:present, subcat:[Experiencer])).
 
 to_vp__inf rule
-    (inf_clause, vsem:(tense2:present, subcat:Rest)) ===>
+    (inf_clause, vsem:(tense2:present, subcat:[_])) ===>
     cat> toinf,
-    cat> (vp, vsem:(tense2:present, subcat:Rest)).
+    cat> (vp, vsem:(tense2:present, subcat:[_])).
 
 v_inf__vp_tend rule
-    (vp, vsem:(tense2:T, subcat:Rest)) ===>
-    cat> (v, vsem:(tend, tense2:T, subcat:[Theme|Rest])),
+    (vp, vsem:(tense2:T, subcat:[Agent])) ===>
+    cat> (v, vsem:(tend, tense2:T, subcat:[Theme, Agent])),
     cat> (inf_clause, vsem:(tense2:present, subcat:[Experiencer]), Theme).
 
 v_inf__vp_appear rule
