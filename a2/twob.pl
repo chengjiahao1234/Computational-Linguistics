@@ -42,10 +42,10 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
         % semantics for verbs 
         v_sem sub [tend, appear, promise, request, sleep]
               intro [tense2:tense, subcat:list].
-            tend sub [] intro [agent:np, theme:inf_clause].
-            appear sub [] intro [theme:inf_clause].
-            promise sub [] intro [agent:np, theme:inf_clause, beneficiary:np].
-            request sub [] intro [agent:np, theme:inf_clause, beneficiary:np].
+            tend sub [] intro [agent_t:np, theme_t:inf_clause].
+            appear sub [] intro [theme_a:inf_clause].
+            promise sub [] intro [agent_p:np, theme_p:inf_clause, beneficiary_p:np].
+            request sub [] intro [agent_r:np, theme_r:inf_clause, beneficiary_r:np].
             sleep sub [] intro [experiencer:np].
     
     % list
@@ -98,35 +98,35 @@ v_inf__vp_request rule
 % Lexicons
 tend ---> (v, vsem:(tend, tense2:present,
     subcat:[(np, Agent), (inf_clause, Theme)],
-    agent:Agent, theme:Theme)).
+    agent_t:Agent, theme_t:Theme)).
 
 tended ---> (v, vsem:(tend, tense2:past,
     subcat:[(np, Agent), (inf_clause, Theme)],
-    agent:Agent, theme:Theme)).
+    agent_t:Agent, theme_t:Theme)).
 
 appear ---> (v, vsem:(appear, tense2:present,
     subcat:[(inf_clause, Theme)],
-    theme:Theme)).
+    theme_a:Theme)).
 
 appeared ---> (v, vsem:(appear, tense2:past,
     subcat:[(inf_clause, Theme)],
-    theme:Theme)).
+    theme_a:Theme)).
 
 promise ---> (v, vsem:(promise, tense2:present,
     subcat:[(np, Agent), (inf_clause, Theme), (np, Beneficiary)],
-    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
+    agent_p:Agent, theme_p:Theme, beneficiary_p:Beneficiary)).
 
 promised ---> (v, vsem:(promise, tense2:past,
     subcat:[(np, Agent), (inf_clause, Theme), (np, Beneficiary)],
-    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
+    agent_p:Agent, theme_p:Theme, beneficiary_p:Beneficiary)).
 
 request ---> (v, vsem:(request, tense2:present,
     subcat:[(np, Agent), (inf_clause, Theme), (np, Beneficiary)],
-    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
+    agent_r:Agent, theme_r:Theme, beneficiary_r:Beneficiary)).
 
 requested ---> (v, vsem:(request, tense2:past,
     subcat:[(np, Agent), (inf_clause, Theme), (np, Beneficiary)],
-    agent:Agent, theme:Theme, beneficiary:Beneficiary)).
+    agent_r:Agent, theme_r:Theme, beneficiary_r:Beneficiary)).
 
 sleep ---> (v, vsem:(sleep, tense2:present,
     subcat:[(np, Experiencer)],
