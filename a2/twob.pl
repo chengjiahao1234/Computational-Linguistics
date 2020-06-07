@@ -59,7 +59,7 @@ np_vp__s rule
     cat> (vp, vsem:(tense2:T, subcat:[Agent|_])).
 
 det_n__np rule
-    (np, nsem:N) ==>
+    (np, nsem:N) ===>
     cat> det,
     cat> (n, nsem:N).
 
