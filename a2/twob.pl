@@ -72,12 +72,13 @@ det_n__np rule
 
 % A: Experiencer
 to_v__inf_sleep rule
-    (inf_clause, vsem:(tense2:T, subcat:[A])) ===>
+    (inf_clause, vsem:(tense2:present, subcat:[A])) ===>
     cat> toinf,
     cat> (v, vsem:(sleep, tense2:present, subcat:[A])).
 
+% A: Beneficiary and/or Experiencer
 to_vp__inf rule
-    (inf_clause, vsem:(tense2:T, subcat:[A])) ===>
+    (inf_clause, vsem:(tense2:present, subcat:[A])) ===>
     cat> toinf,
     cat> (vp, vsem:(tense2:present, subcat:[A])).
 
