@@ -1,7 +1,7 @@
 :- ale_flag(subtypecover,_,off).
 :- discontiguous sub/2,intro/2.
 
-bot sub [mood, tense, sem, cat, pos, verbal, nominal].
+bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
     % parts of speech
         pos sub [n, p, v, det, toinf].
@@ -49,8 +49,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
             expect sub [] intro [agent_exp:np, theme_exp:inf_clause].
             sleep sub [] intro [experiencer:np].
 
-list sub [e_list,ne_list].
-  ne_list intro [hd:cat,tl:list].
+	list sub [e_list,ne_list].
+		ne_list intro [hd:bot,tl:list].
 s rule
 s ===>
 cat> (np,AGENT),
