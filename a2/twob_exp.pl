@@ -51,9 +51,10 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
 	list sub [e_list,ne_list].
 		ne_list intro [hd:bot,tl:list].
+
 np_vp__s rule
-    (s, nsem:N) ===>
-    cat> (np, nsem:N, AGENT),
+    s ===>
+    cat> (np, AGENT),
     cat> (vp, vsem:(tense2:past,subcat:[AGENT])).
 
 det_n__np rule
