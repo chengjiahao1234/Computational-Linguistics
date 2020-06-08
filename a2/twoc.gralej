@@ -1,18 +1,16 @@
-% Name: Jiahao Cheng, login_id: chengj60, student_id: 1003065737
-
-<'the student appeared to sleep'
-{ :'np_vp__s:the student appeared to sleep'
+<'the teacher appeared to sleep'
+{ :'np_vp__s:the teacher appeared to sleep'
     s(
         mood: indicative(
             tense: tense),
         vsem: 'mgsat(v_sem)')
-    { :'det_n__np:the student'
+    { :'det_n__np:the teacher'
         np(
-            nsem: $2 = student)
+            nsem: $2 = teacher)
         { :'lexicon:the'
             det
         }
-        { :'lexicon:student'
+        { :'lexicon:teacher'
             n(
                 nsem: $2)
         }
