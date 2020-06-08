@@ -51,20 +51,23 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
 	list sub [e_list,ne_list].
 		ne_list intro [hd:bot,tl:list].
+
 s rule
-s ===>
-cat> (np,AGENT),
-cat> (vp, vsem:(tense2:past,subcat:[AGENT])).
+np_vp__s rule
+    s ===>
+    cat> (np, nsem:N, A),
+    cat> (vp, vsem:(tense2:T, subcat:[A])).
 
-np_det_n rule
-(np,nsem:N_sem) ===>
-cat> det,
-cat> (n,nsem:N_sem).
+det_n__np rule
+    (np, nsem:N) ===>
+    cat> det,
+    cat> (n, nsem:N).
 
-vp_inf rule
-(vp,vsem:(tense2:Tense,subcat:[AGENT])) ===>
-cat> (v,vsem:(tense2:Tense,subcat:[AGENT,THEME])),
-cat> (inf_clause, THEME,vsem:(tense2:present,subcat:[AGENT])).
+% A: Agent and/or Experiencer, B: Theme
+v_inf__vp_tend rule
+    (vp, vsem:(tense2:T, subcat:[A])) ===>
+    cat> (v, vsem:(tend, tense2:T, subcat:[B, A])),
+    cat> (inf_clause, vsem:(tense2:present, subcat:[A]), B).
 
 %passing beneficiary for promise sentences
 vp_inf_pro rule
