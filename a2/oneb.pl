@@ -49,18 +49,18 @@ det_n__np rule
 	cat> (n, num:A, is_pr:P).
 
 % Lexicon
-fred ---> (np, num:sg, is_pr:pr).
-
 biscuits ---> (n, num:pl, is_pr:npr).
+
+dog ---> (n, num:sg, is_pr:npr).
 
 feed ---> (v, num:pl).
 
 feeds ---> (v, num:sg).
 
-the ---> det.
-
-dog ---> (n, num:sg, is_pr:npr).
+fred ---> (np, num:sg, is_pr:pr).
 
 puppies ---> (n, num:pl, is_pr:npr).
+
+the ---> det.
 
 with ---> p.

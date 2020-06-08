@@ -72,18 +72,18 @@ nppl__np rule
 	cat> np_pl.
 
 % Lexicon
-fred ---> nprp.
-
 biscuits ---> n_pl.
+
+dog ---> n_sg.
 
 feed ---> v_pl.
 
 feeds ---> v_sg.
 
-the ---> det.
-
-dog ---> n_sg.
+fred ---> nprp.
 
 puppies ---> n_pl.
+
+the ---> det.
 
 with ---> p.

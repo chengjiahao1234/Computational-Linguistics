@@ -109,14 +109,6 @@ v_inf__vp_request rule
     cat> (inf_clause, vsem:(tense2:present, subcat:[C]), B).
 
 % Lexicons
-tend ---> (v, vsem:(tend, tense2:present,
-    subcat:[(np, Agent), (inf_clause, Theme)],
-    agent_t:Agent, theme_t:Theme)).
-
-tended ---> (v, vsem:(tend, tense2:past,
-    subcat:[(np, Agent), (inf_clause, Theme)],
-    agent_t:Agent, theme_t:Theme)).
-
 appear ---> (v, vsem:(appear, tense2:present,
     subcat:[(inf_clause, Theme)],
     theme_a:Theme)).
@@ -149,10 +141,18 @@ slept ---> (v, vsem:(sleep, tense2:past,
     subcat:[(np, Experiencer)],
     experiencer:Experiencer)).
 
-the ---> det.
-
-to ---> toinf.
-
 student ---> (n, nsem:student).
 
 teacher ---> (n, nsem:teacher).
+
+tend ---> (v, vsem:(tend, tense2:present,
+    subcat:[(np, Agent), (inf_clause, Theme)],
+    agent_t:Agent, theme_t:Theme)).
+
+tended ---> (v, vsem:(tend, tense2:past,
+    subcat:[(np, Agent), (inf_clause, Theme)],
+    agent_t:Agent, theme_t:Theme)).
+
+the ---> det.
+
+to ---> toinf.
