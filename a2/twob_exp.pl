@@ -63,11 +63,10 @@ det_n__np rule
     cat> det,
     cat> (n, nsem:N).
 
-% A: Agent and/or Experiencer, B: Theme
-v_inf__vp_tend rule
-    (vp, vsem:(tense2:T, subcat:[A])) ===>
-    cat> (v, vsem:(tend, tense2:T, subcat:[B, A])),
-    cat> (inf_clause, vsem:(tense2:present, subcat:[A]), B).
+vp_inf rule
+(vp,vsem:(tense2:Tense,subcat:[AGENT])) ===>
+cat> (v,vsem:(tense2:Tense,subcat:[AGENT,THEME])),
+cat> (inf_clause, THEME,vsem:(tense2:present,subcat:[AGENT])).
 
 %passing beneficiary for promise sentences
 vp_inf_pro rule
