@@ -54,7 +54,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 
 np_vp__s rule
     s ===>
-    cat> (np, A),
+    cat> (np, nsem:N, A),
     cat> (vp, vsem:(tense2:past,subcat:[A])).
 
 det_n__np rule
@@ -62,10 +62,10 @@ det_n__np rule
     cat> det,
     cat> (n, nsem:N).
 
-vp_inf rule
-(vp,vsem:(tense2:Tense,subcat:[A])) ===>
-cat> (v,vsem:(tense2:Tense,subcat:[A,B])),
-cat> (inf_clause, B,vsem:(tense2:present,subcat:[A])).
+vp_inf__vp_tend rule
+	(vp,vsem:(tense2:T,subcat:[A])) ===>
+	cat> (v,vsem:(tend, tense2:T,subcat:[A,B])),
+	cat> (inf_clause, vsem:(tense2:present,subcat:[A]), B).
 
 %passing beneficiary for promise sentences
 vp_inf_pro rule
