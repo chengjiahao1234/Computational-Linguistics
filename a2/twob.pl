@@ -66,12 +66,12 @@ det_n__np rule
 
 % A: Experiencer
 to_v__inf_sleep rule
-    (inf_clause, vsem:(tense2:present, subcat:[A])) ===>
+    (inf_clause, vsem:(tense2:T, subcat:[A])) ===>
     cat> toinf,
     cat> (v, vsem:(sleep, tense2:present, subcat:[A])).
 
 to_vp__inf rule
-    (inf_clause, vsem:(tense2:present, subcat:[_])) ===>
+    (inf_clause, vsem:(tense2:T, subcat:[_])) ===>
     cat> toinf,
     cat> (vp, vsem:(tense2:present, subcat:[_])).
 
