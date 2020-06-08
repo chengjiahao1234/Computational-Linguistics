@@ -90,14 +90,14 @@ v_inf__vp_appear rule
 % A: Agent and/or Experiencer, B: Theme, C: Beneficiary
 v_inf__vp_promise rule
     (vp, vsem:(tense2:T, subcat:[A])) ===>
-    cat> (v, vsem:(promise, tense2:T, subcat:[A, C, B])),
+    cat> (v, vsem:(promise, tense2:T, subcat:[A, B, C])),
     cat> (np, nsem:N, C),
     cat> (inf_clause, vsem:(tense2:present, subcat:[A]), B).
 
 % A: Agent and/or Experiencer, B: Theme, C: Beneficiary
 v_inf__vp_request rule
     (vp, vsem:(tense2:T, subcat:[A])) ===>
-    cat> (v, vsem:(request, tense2:T, subcat:[A, C, B])),
+    cat> (v, vsem:(request, tense2:T, subcat:[A, B, C])),
     cat> (np, nsem:N, C),
     cat> (inf_clause, vsem:(tense2:present, subcat:[C]), B).
 
