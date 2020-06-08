@@ -57,7 +57,13 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 np_vp__s rule
     s ===>
     cat> (np, nsem:N, A),
-    cat> (vp, vsem:(tense2:T, subcat:[A])).
+    cat> (vp, vsem:(tense2:past, subcat:[A])).
+
+% A: Experiencer
+np_v__s_sleep rule
+    s ===>
+    cat> (np, nsem:N, A),
+    cat> (v, vsem:(sleep, tense2:past, subcat:[A])).
 
 det_n__np rule
     (np, nsem:N) ===>
