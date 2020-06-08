@@ -71,9 +71,9 @@ to_v__inf_sleep rule
     cat> (v, vsem:(sleep, tense2:present, subcat:[A])).
 
 to_vp__inf rule
-    (inf_clause, vsem:(tense2:T, subcat:[_])) ===>
+    (inf_clause, vsem:(tense2:T, subcat:[A])) ===>
     cat> toinf,
-    cat> (vp, vsem:(tense2:present, subcat:[_])).
+    cat> (vp, vsem:(tense2:present, subcat:[A])).
 
 % A: Agent and/or Experiencer, B: Theme
 v_inf__vp_tend rule
