@@ -64,7 +64,7 @@ det_n__np rule
 
 vp_inf__vp_tend rule
 	(vp, vsem:(tense2:T, subcat:[A])) ===>
-	cat> (v, vsem:(tend, tense2:T, subcat:[B, A])),
+	cat> (v, vsem:(tend, tense2:T, subcat:[A, B])),
 	cat> (inf_clause, vsem:(tense2:present, subcat:[A]), B).
 
 %passing beneficiary for promise sentences
