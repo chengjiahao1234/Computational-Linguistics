@@ -38,9 +38,9 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
             teacher sub [].
 
         % semantics for verbs
-        % vtense sub [present,past].
+        % tense2 sub [present,past].
         v_sem sub [tend, appear, promise, expect, request, sleep]
-              intro [vtense:tense, subcat:list].     % This should not be empty!  Fill in features for this and
+              intro [tense2:tense, subcat:list].     % This should not be empty!  Fill in features for this and
                             % the following subtypes:
             tend sub [] intro [agent_t:np, theme_t:inf_clause].
             appear sub [] intro [theme_a:inf_clause].
@@ -54,7 +54,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
 s rule
 s ===>
 cat> (np,AGENT),
-cat> (vp, vsem:(vtense:past,subcat:[AGENT])).
+cat> (vp, vsem:(tense2:past,subcat:[AGENT])).
 
 np_det_n rule
 (np,nsem:N_sem) ===>
@@ -62,42 +62,42 @@ cat> det,
 cat> (n,nsem:N_sem).
 
 vp_inf rule
-(vp,vsem:(vtense:Tense,subcat:[AGENT])) ===>
-cat> (v,vsem:(vtense:Tense,subcat:[AGENT,THEME])),
-cat> (inf_clause, THEME,vsem:(vtense:present,subcat:[AGENT])).
+(vp,vsem:(tense2:Tense,subcat:[AGENT])) ===>
+cat> (v,vsem:(tense2:Tense,subcat:[AGENT,THEME])),
+cat> (inf_clause, THEME,vsem:(tense2:present,subcat:[AGENT])).
 
 %passing beneficiary for promise sentences
 vp_inf_pro rule
-(vp,vsem:(vtense:Tense,subcat:[AGENT])) ===>
-cat> (v,vsem:(vtense:Tense,subcat:[AGENT,THEME,BENEFICIARY])),
+(vp,vsem:(tense2:Tense,subcat:[AGENT])) ===>
+cat> (v,vsem:(tense2:Tense,subcat:[AGENT,THEME,BENEFICIARY])),
 cat> (np,BENEFICIARY,nsem:N_sem),
-cat> (inf_clause, THEME,vsem:(vtense:present,subcat:[AGENT])).
+cat> (inf_clause, THEME,vsem:(tense2:present,subcat:[AGENT])).
 
 vp_inf_apr rule
-(vp,vsem:(vtense:Tense,subcat:[AGENT])) ===>
-cat> (v,vsem:(vtense:Tense,subcat:[THEME])),
-cat> (inf_clause, THEME,vsem:(vtense:present,subcat:[AGENT])).
+(vp,vsem:(tense2:Tense,subcat:[AGENT])) ===>
+cat> (v,vsem:(tense2:Tense,subcat:[THEME])),
+cat> (inf_clause, THEME,vsem:(tense2:present,subcat:[AGENT])).
 
 vp_v rule
-(vp,vsem:(vtense:Tense,subcat:[AGENT])) ===>
-cat> (v,vsem:(vtense:Tense,subcat:[AGENT])).
+(vp,vsem:(tense2:Tense,subcat:[AGENT])) ===>
+cat> (v,vsem:(tense2:Tense,subcat:[AGENT])).
 
 vp_np rule
-(vp,vsem:(vtense:Tense,subcat:[AGENT]))  ===>
-cat> (v,vsem:(vtense:Tense,subcat:[AGENT,THEME])),
-cat> (inf_clause,THEME, vsem:(vtense:present,subcat:[AGENT]).
+(vp,vsem:(tense2:Tense,subcat:[AGENT]))  ===>
+cat> (v,vsem:(tense2:Tense,subcat:[AGENT,THEME])),
+cat> (inf_clause,THEME, vsem:(tense2:present,subcat:[AGENT]).
 
 %passing experiencer for expect sentences
 v_inf_clause_exp rule
-(inf_clause,vsem:(vtense:Tense)) ===>
+(inf_clause,vsem:(tense2:Tense)) ===>
 cat> (np,nsem:N_sem,EXP),
 cat> toinf,
-cat> (vp,vsem:(vtense:present,subcat:[EXP])).
+cat> (vp,vsem:(tense2:present,subcat:[EXP])).
 
 v_inf_clause rule
-(inf_clause,vsem:(vtense:Tense,subcat:[AGENT])) ===>
+(inf_clause,vsem:(tense2:Tense,subcat:[AGENT])) ===>
 cat> toinf,
-cat> (vp,vsem:(vtense:present,subcat:[AGENT])).
+cat> (vp,vsem:(tense2:present,subcat:[AGENT])).
 
 %[A,B,C] is equal to [AGENT,THEME,BENEFICIARY]
 % Lexicons
