@@ -2,11 +2,11 @@
 
 % Part 1
 % Grammar 1 & 2
-% s_sg
+% singular s
 test_sent([fred, feeds, the, dog, with, biscuits]).
 test_sent([fred, feed, the, dog, with, biscuits], fails).
 
-% s_pl
+% plural s
 test_sent([biscuits, feed, the, dog, with, fred]).
 test_sent([puppies, feeds, fred, with, the, dog], fails).
 
