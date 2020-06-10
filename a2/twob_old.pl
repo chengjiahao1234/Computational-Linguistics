@@ -15,7 +15,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
     % phrasal categories
     cat sub [vproj, np].
         vproj sub [inf_clause, s, vp] intro [mood:mood].
-            inf_clause intro [mood:infinitive].
+            inf_clause sub [] intro [mood:infinitive].
             s intro [mood:indicative].
             vp intro [mood:indicative].
         np sub [].
