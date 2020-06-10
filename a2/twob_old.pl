@@ -44,8 +44,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
               intro [tense2:tense, subcat:list].
             tend sub [] intro [agent_t:np, theme_t:inf_clause].
             appear sub [] intro [theme_a:inf_clause].
-            promise sub [] intro [agent_p:np, theme_p:[np, inf_clause], beneficiary_p:np].
-            request sub [] intro [agent_r:np, theme_r:[np, inf_clause], beneficiary_r:np].
+            promise sub [] intro [agent_p:np, theme_p:(np, inf_clause), beneficiary_p:np].
+            request sub [] intro [agent_r:np, theme_r:(np, inf_clause), beneficiary_r:np].
             sleep sub [] intro [experiencer:np].
     
     % list
