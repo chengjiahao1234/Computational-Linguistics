@@ -15,7 +15,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, list].
     % phrasal categories
     cat sub [vproj, np].
         vproj sub [inf_clause, s, vp] intro [mood:mood].
-            inf_clause sub [] intro [mood:infinitive].
+            inf_clause intro [mood:infinitive].
             s intro [mood:indicative].
             vp intro [mood:indicative].
         np sub [].
@@ -72,7 +72,7 @@ det_n__np rule
 
 % A: Experiencer
 to_v__inf_sleep rule
-    (inf_caluse, vsem:(tense2:present, subcat:[A])) ===>
+    (inf_clause, vsem:(tense2:present, subcat:[A])) ===>
     cat> toinf,
     cat> (v, vsem:(sleep, tense2:present, subcat:[A])).
 
